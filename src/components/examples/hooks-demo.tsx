@@ -40,17 +40,19 @@ export function HooksDemo() {
 
 // 1) useMediaQuery: 화면 크기가 조건에 맞는지 알려줍니다.
 function MediaQueryCard() {
-  const isMobile = useMediaQuery("(max-width: 768px)", clientOnlyOptions);
+  // Tailwind의 md(768px), lg(1024px) 기준과 같게 맞춥니다.
+  // 구간 사이에 빈틈이 없도록 767.98px, 1023.98px를 씁니다. (화면 배율 때문에 폭이 소수점일 수 있어서)
+  const isMobile = useMediaQuery("(max-width: 767.98px)", clientOnlyOptions);
   const isTablet = useMediaQuery(
-    "(min-width: 769px) and (max-width: 1024px)",
+    "(min-width: 768px) and (max-width: 1023.98px)",
     clientOnlyOptions,
   );
-  const isDesktop = useMediaQuery("(min-width: 1025px)", clientOnlyOptions);
+  const isDesktop = useMediaQuery("(min-width: 1024px)", clientOnlyOptions);
 
   const rows = [
-    { label: "모바일 (768px 이하)", icon: Smartphone, isActive: isMobile },
-    { label: "태블릿 (769px ~ 1024px)", icon: Tablet, isActive: isTablet },
-    { label: "데스크톱 (1025px 이상)", icon: Monitor, isActive: isDesktop },
+    { label: "모바일 (768px 미만)", icon: Smartphone, isActive: isMobile },
+    { label: "태블릿 (768px ~ 1023px)", icon: Tablet, isActive: isTablet },
+    { label: "데스크톱 (1024px 이상)", icon: Monitor, isActive: isDesktop },
   ];
 
   return (

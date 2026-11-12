@@ -21,17 +21,16 @@ export function MobileNav() {
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
-      <SheetTrigger
-        render={
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden"
-            aria-label="메뉴 열기"
-          />
-        }
-      >
-        <Menu className="size-4" />
+      {/* Radix는 asChild로 "버튼을 트리거로 사용"합니다 (Base UI의 render 속성과 다른 점) */}
+      <SheetTrigger asChild>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="md:hidden"
+          aria-label="메뉴 열기"
+        >
+          <Menu className="size-4" />
+        </Button>
       </SheetTrigger>
       <SheetContent side="left">
         <SheetHeader>

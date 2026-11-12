@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { siteConfig } from "@/config/site";
 
@@ -43,9 +43,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           disableTransitionOnChange
         >
           <Header />
-          <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-8">
-            {children}
-          </main>
+          {/* 폭 제한은 각 페이지/섹션이 Container로 직접 정합니다 (홈은 배경이 화면 전체로 넓어야 해서) */}
+          <main className="flex-1">{children}</main>
           <Footer />
           <Toaster richColors />
         </ThemeProvider>

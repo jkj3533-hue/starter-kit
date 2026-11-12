@@ -41,6 +41,8 @@ export function MobileNav() {
             <Link
               key={item.href}
               href={item.href}
+              target={item.external ? "_blank" : undefined}
+              rel={item.external ? "noopener noreferrer" : undefined}
               onClick={() => setIsOpen(false)}
               className="rounded-md px-3 py-2 text-sm hover:bg-muted"
             >
